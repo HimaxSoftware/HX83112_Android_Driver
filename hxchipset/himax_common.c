@@ -1324,6 +1324,10 @@ int himax_parse_report_points(struct himax_ts_data *ts, int ts_path, int ts_stat
 
 
 	ts->old_finger = ts->pre_finger_mask;
+	if (ts->hx_point_num == 0){		
+		I("%s: hx_point_num = 0! \n", __func__);
+		return ts_status;
+	}
 	ts->pre_finger_mask = 0;
 	hx_touch_data->finger_num = hx_touch_data->hx_coord_buf[ts->coordInfoSize - 4] & 0x0F;
 	hx_touch_data->finger_on = 1;

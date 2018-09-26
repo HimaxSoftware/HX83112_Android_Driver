@@ -50,7 +50,7 @@
 	#include <linux/of_gpio.h>
 #endif
 
-#define HIMAX_DRIVER_VER "1.2.2.4_ABCD1234_01"
+#define HIMAX_DRIVER_VER "1.2.2.5_QCT1234_02"
 
 #define FLASH_DUMP_FILE "/sdcard/HX_Flash_Dump.bin"
 
