@@ -1459,6 +1459,9 @@ static void himax_report_all_leave_event(struct himax_ts_data *ts)
 	for (loop_i = 0; loop_i < ts->nFinger_support; loop_i++) {
 #ifndef	HX_PROTOCOL_A
 		input_mt_slot(ts->input_dev, loop_i);
+		input_report_abs(ts->input_dev, ABS_MT_TOUCH_MAJOR, 0);
+		input_report_abs(ts->input_dev, ABS_MT_WIDTH_MAJOR, 0);
+		input_report_abs(ts->input_dev, ABS_MT_PRESSURE, 0);
 		input_mt_report_slot_state(ts->input_dev, MT_TOOL_FINGER, 0);
 #endif
 	}
@@ -1573,6 +1576,9 @@ static void himax_key_report_operation(int tp_key_index, struct himax_ts_data *t
 		vk_press = 0;
 #ifndef	HX_PROTOCOL_A
 		input_mt_slot(ts->input_dev, 0);
+		input_report_abs(ts->input_dev, ABS_MT_TOUCH_MAJOR, 0);
+		input_report_abs(ts->input_dev, ABS_MT_WIDTH_MAJOR, 0);
+		input_report_abs(ts->input_dev, ABS_MT_PRESSURE, 0);
 		input_mt_report_slot_state(ts->input_dev, MT_TOOL_FINGER, 0);
 #else
 		input_mt_sync(ts->input_dev);
@@ -1691,6 +1697,9 @@ static void himax_finger_report(struct himax_ts_data *ts)
 
 		} else {
 			input_mt_slot(ts->input_dev, i);
+			input_report_abs(ts->input_dev, ABS_MT_TOUCH_MAJOR, 0);
+			input_report_abs(ts->input_dev, ABS_MT_WIDTH_MAJOR, 0);
+			input_report_abs(ts->input_dev, ABS_MT_PRESSURE, 0);
 			input_mt_report_slot_state(ts->input_dev, MT_TOOL_FINGER, 0);
 		}
 	}
@@ -1732,6 +1741,9 @@ static void himax_finger_leave(struct himax_ts_data *ts)
 	for (loop_i = 0; loop_i < ts->nFinger_support; loop_i++) {
 		if (((ts->pre_finger_mask >> loop_i) & 1) == 1) {
 			input_mt_slot(ts->input_dev, loop_i);
+			input_report_abs(ts->input_dev, ABS_MT_TOUCH_MAJOR, 0);
+			input_report_abs(ts->input_dev, ABS_MT_WIDTH_MAJOR, 0);
+			input_report_abs(ts->input_dev, ABS_MT_PRESSURE, 0);
 			input_mt_report_slot_state(ts->input_dev, MT_TOOL_FINGER, 0);
 		}
 	}
